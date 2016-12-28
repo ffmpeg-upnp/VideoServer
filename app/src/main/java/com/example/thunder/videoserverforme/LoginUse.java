@@ -61,7 +61,7 @@ public class LoginUse extends AppCompatActivity implements PropertyChangeListene
         setContentView(R.layout.activity_login);
 
         Permissions();
-        mDevfinder=null;
+        mDevfinder = null;
         getApplicationContext().bindService(
                 new Intent(this, BrowserUpnpService.class),
                 serviceConnection,
@@ -82,13 +82,13 @@ public class LoginUse extends AppCompatActivity implements PropertyChangeListene
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        Boolean want_request=false;
+        Boolean want_request = false;
         switch(requestCode) {
             case REQUEST_READ_SMS :
                 if (grantResults.length > 0
                         && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 } else {
-                    want_request=true;
+                    want_request = true;
                     //使用者拒絕權限，顯示對話框告知
                     new AlertDialog.Builder(this)
                             .setMessage("必須允許權限才能顯示資料")
@@ -100,7 +100,7 @@ public class LoginUse extends AppCompatActivity implements PropertyChangeListene
                 if (grantResults.length > 0
                         && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 } else {
-                    want_request=true;
+                    want_request = true;
                     //使用者拒絕權限，顯示對話框告知
                     new AlertDialog.Builder(this)
                             .setMessage("必須允許權限才能顯示資料")
