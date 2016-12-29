@@ -17,6 +17,7 @@ public class AttachParameter {
     public static String in_ip ="0.0.0.0";
     public static String latest_cookie;
     public static String connect_ip,connect_port;
+    public static String selfId = "";
 
     public static int music = 0;
     public static int video = 1;
@@ -26,7 +27,7 @@ public class AttachParameter {
     public static int content = 0;
     public static int reply = 1;
     public static int d2d = 2;
-    public static int msgtype = 3;
+    public static int msgType = 3;
 
     public static String sdcardPath = Environment.getExternalStorageDirectory().toString() + File.separator + "KM" + "/";
 
@@ -73,8 +74,8 @@ public class AttachParameter {
         return result;
     }
 
-    public static boolean[] checkCR(String value) {
-        boolean[] checktype = new boolean[msgtype];
+    public static boolean[] checkState(String value) {
+        boolean[] checktype = new boolean[msgType];
         Pattern cpattern = Pattern.compile("&content.*"); // check file type
         Matcher cmatcher = cpattern.matcher(value);
         Pattern rpattern = Pattern.compile("&reply.*"); // check file type

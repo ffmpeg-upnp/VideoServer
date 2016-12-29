@@ -41,8 +41,8 @@ public class Alive {
                 alive = URLDecoder.decode(alive, "utf-8");
                 // 解析出來是ip
                 aliveRes = alive.substring(alive.indexOf("ip=") + 3, alive.length() - 1);
-                boolean[] checktype = new boolean[AttachParameter.msgtype];
-                checktype = AttachParameter.checkCR(aliveRes);
+                boolean[] checktype;
+                checktype = AttachParameter.checkState(aliveRes);
                 if(checktype[AttachParameter.content]){
                     ip = aliveRes.substring(0, aliveRes.indexOf("&content"));
                 }
