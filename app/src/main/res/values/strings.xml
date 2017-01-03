@@ -3,4 +3,5 @@
     <string name="OpenServer">開啟服務</string>
     <string name="registering_demo_device">Registering UPnP demo device…</string>
     <string name="create_demo_failed">Creating of demo device failed, check the log!</string>
+    <string name="selectVideo">選擇影片</string>
 </resources>

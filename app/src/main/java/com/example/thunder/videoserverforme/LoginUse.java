@@ -9,17 +9,25 @@ import android.content.Intent;
 import android.content.ServiceConnection;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.media.MediaPlayer;
+import android.media.ThumbnailUtils;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.os.StrictMode;
+import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.VideoView;
 
 import org.teleal.cling.android.AndroidUpnpService;
 import org.teleal.cling.binding.LocalServiceBindingException;
@@ -40,6 +48,8 @@ import org.teleal.cling.model.types.UDN;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.io.File;
+import java.io.IOError;
+import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -54,11 +64,17 @@ import unpn.service.UPnPDeviceFinder;
  * Created by thunder on 2016/12/27.
  */
 
-public class LoginUse extends AppCompatActivity implements View.OnClickListener, PropertyChangeListener {
+public class LoginUse extends AppCompatActivity implements View.OnClickListener, PropertyChangeListener, MediaPlayer.OnPreparedListener{
 
+    private Button btnIntent, btnSelect;
     private AndroidUpnpService upnpService;
     private UDN udn = UDN.uniqueSystemIdentifier("Demo Binary Light");
     private UPnPDeviceFinder mDevfinder  = null;
+    private int PICK_VIDEO_REQUEST=1;
+    private VideoView videoView;
+    private ImageView imageView;
+    private Bitmap choosenImage;
+    private TextView tv, tv2;
     private boolean finishUpdateList = false;
     private static final Logger log = Logger.getLogger(LoginUse.class.getName());
     private static final int REQUEST_READ_SMS = 1;
@@ -102,8 +118,15 @@ public class LoginUse extends AppCompatActivity implements View.OnClickListener,
         KM_DB.new_table(Uri.parse("content://tab.list.d2d/missile_group"));
         KM_DB.new_table(Uri.parse("content://tab.list.d2d/missile_fire"));
 
-        Button btnIntent = (Button) findViewById(R.id.btnIntent);
+        btnIntent = (Button) findViewById(R.id.btnIntent);
+        btnSelect = (Button) findViewById(R.id.btnSelect);
+//        imageView = (ImageView) findViewById(R.id.imageShow);
+        videoView = (VideoView) findViewById(R.id.videoShow);
+        tv = (TextView) findViewById(R.id.tv);
+        tv2 = (TextView) findViewById(R.id.tv2);
+
         btnIntent.setOnClickListener(this);
+        btnSelect.setOnClickListener(this);
 
 
         String[] testForm = { UserSchema._ID, UserSchema._SENDER, UserSchema._TITTLE, UserSchema._CONTENT,
@@ -130,8 +153,43 @@ public class LoginUse extends AppCompatActivity implements View.OnClickListener,
                 intent.setClass(LoginUse.this, MainActivity.class);
                 startActivity(intent);
                 break;
+
+            case R.id.btnSelect:
+                intent.setType("video/*");
+                intent.setAction(Intent.ACTION_GET_CONTENT);
+                startActivityForResult(Intent.createChooser(intent, "選擇影片"), PICK_VIDEO_REQUEST);
         }
     }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data){
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode ==PICK_VIDEO_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null){
+            Uri uri = data.getData();
+
+            if (uri != null){
+
+//                try {
+//                    choosenImage = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
+//                    imageView = (ImageView) findViewById(R.id.imageShow);
+//                    imageView.setImageBitmap(choosenImage);
+//                    setTitle(uri.toString());
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+                videoView = (VideoView) findViewById(R.id.videoShow);
+                videoView.setVideoURI(uri);
+                tv.setText(uri.toString());
+//                setTitle(uri.toString());
+//                data = new Intent(Intent.ACTION_VIEW);
+                data.setData(uri);
+//                this.startActivity(data);
+            }
+
+        }
+    }
+
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
@@ -291,4 +349,8 @@ public class LoginUse extends AppCompatActivity implements View.OnClickListener,
 
     }
 
+    @Override
+    public void onPrepared(MediaPlayer mediaPlayer) {
+        videoView.start();
+    }
 }
