@@ -10,17 +10,20 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.thunder.videoserverforme.MainActivity">
 
-    <Button
+    <TextView
+        android:id="@+id/TipsTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/btn"
-        android:text="開啟服務_1"/>
+        android:layout_margin="10dp"
+        android:textStyle="bold"
+        android:textSize="15sp" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/btn"
+        android:id="@+id/choice"
+        android:text="選擇檔案"
+        android:layout_alignTop="@+id/TipsTextView"
         android:layout_alignParentStart="true"
-        android:id="@+id/btnIntent2"
-        android:text="開啟服務_2"/>
+        android:layout_marginTop="16dp" />
 </RelativeLayout>

@@ -1,5 +1,7 @@
 package tab.list;
 
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Environment;
 
 import java.io.File;
@@ -19,6 +21,13 @@ public class AttachParameter {
     public static String connect_ip,connect_port;
     public static String selfId = "";
 
+    int count, id_this;
+    int[] arrDuration, arrSize;
+    Bitmap[] thumbnails;
+    boolean[] thumbnailsselection;
+    String[] arrPath, arrName, Path;
+    private Uri uri;
+
     public static int music = 0;
     public static int video = 1;
     public static int photo = 2;
@@ -30,6 +39,57 @@ public class AttachParameter {
     public static int msgType = 3;
 
     public static String sdcardPath = Environment.getExternalStorageDirectory().toString() + File.separator + "KM" + "/";
+
+    public void setcount(int count) {
+        this.count = count;
+    }
+    public void setid(int id_this) {
+        this.id_this = id_this;
+    }
+
+    public void setarrDuration(int[] arrDuration) {
+        this.arrDuration = arrDuration;
+    }
+
+    public void setarrSize(int[] arrSize) {
+        this.arrSize = arrSize;
+    }
+
+    public void setthumbnails(Bitmap[] thumbnails) {
+        this.thumbnails = thumbnails;
+    }
+
+    public void setthumbnailsselection(boolean[] thumbnailsselection) {
+        this.thumbnailsselection = thumbnailsselection;
+    }
+
+    public void setarrPath(String[] arrPath) {
+        this.arrPath = arrPath;
+    }
+
+    public void setPath(String[] Path) {
+        this.Path = Path;
+    }
+
+    public void setarrName(String[] arrName) {
+        this.arrName = arrName;
+    }
+
+    public void seturi(Uri uri) {
+        this.uri = uri;
+    }
+
+    public int getcount() {
+        return count;
+    }
+
+    public int getid() {
+        return id_this;
+    }
+
+    public Uri geturi() {
+        return uri;
+    }
 
     public static boolean[] checkType(String file) {
         //2016/07/04更改

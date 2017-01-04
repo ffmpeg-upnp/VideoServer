@@ -4,11 +4,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/btnIntent"
-        android:text="@string/OpenServer"/>
+    <!--<Button-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:id="@+id/btnIntent"-->
+        <!--android:text="@string/OpenServer"/>-->
 
     <Button
         android:layout_width="wrap_content"
@@ -25,10 +25,14 @@
         android:layout_height="wrap_content"
         android:id="@+id/tv2"/>
 
-    <!--<ImageView-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent"-->
-        <!--android:id="@+id/imageShow"/>-->
+    <TextView
+        android:id="@+id/TipsTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:textStyle="bold"
+        android:textSize="15sp" />
+
     <VideoView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
