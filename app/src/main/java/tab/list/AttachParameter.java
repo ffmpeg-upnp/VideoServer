@@ -20,6 +20,7 @@ public class AttachParameter {
     public static String latest_cookie;
     public static String connect_ip,connect_port;
     public static String selfId = "";
+    public static boolean nat = false;
 
     int count, id_this;
     int[] arrDuration, arrSize;
@@ -37,6 +38,8 @@ public class AttachParameter {
     public static int reply = 1;
     public static int d2d = 2;
     public static int msgType = 3;
+
+    public static int port = 5000;
 
     public static String sdcardPath = Environment.getExternalStorageDirectory().toString() + File.separator + "KM" + "/";
 

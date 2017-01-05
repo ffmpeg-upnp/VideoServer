@@ -19,23 +19,6 @@
         android:textSize="15sp" />
 
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/choice"
-        android:text="選擇檔案"
-        android:layout_alignTop="@+id/TipsTextView"
-        android:layout_alignParentEnd="true" />
-
-    <ImageView
-        android:id="@+id/previewimg"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginLeft="10dp"
-        android:layout_below="@+id/choice"
-        android:layout_alignParentEnd="true"
-        android:layout_toEndOf="@+id/delete" />
-
-    <Button
         android:id="@+id/delete"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -44,4 +27,36 @@
         android:textSize="10sp"
         android:layout_alignTop="@+id/choice"
         android:layout_toStartOf="@+id/choice" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/choice"
+        android:text="選擇檔案"
+        android:layout_below="@+id/TipsTextView"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="25dp" />
+
+    <ImageView
+        android:id="@+id/previewimg"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginLeft="10dp"
+        android:layout_below="@+id/choice"
+        android:layout_alignParentEnd="true" />
+
+    <Switch
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/control"
+        android:layout_below="@+id/TipsTextView"
+        android:layout_alignParentEnd="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/close"
+        android:text="Close"
+        android:layout_below="@+id/control"
+        android:layout_toStartOf="@+id/delete" />
 </RelativeLayout>
